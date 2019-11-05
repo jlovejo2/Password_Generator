@@ -21,7 +21,7 @@
 <!--End Header-->
 <!--Start Card For password research-->
 <div class="row">
-    <div class="col-lg-4 col-md-6">
+    <div class="col-lg-3 col-md-12 col-sm-12">
         <div class="card" style="width: 18rem;">
             <img class="card-img-top" src=".../100px180/" alt="Card image cap">
             <div class="card-body">
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-8 col-md-6">
+    <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="content row">
             <h2>Generate a Password</h2>
         </div>
@@ -45,6 +45,35 @@
             <div class="col-lg-6 col-sm-12">
                 <button type="button" class="btn btn-secondary btn-sm">Small button</button>
             </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <h2>Checkbox for desired password criteria</h2>
+        <!--Adding checkboxes for password criteria-->
+        <form class="form-inline">
+                <div class="form-group">
+                  <label for="passwordLength">Length</label>
+                  <input type="password" id="passwordLength" class="form-control mx-sm-3" aria-describedby="passwordHelpInline">
+                  <small id="passwordHelpInline" class="text-muted">
+                    Length must be between 8-128 characters.
+                  </small>
+                </div>
+        </form>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="special_characters" checked >
+            <label class="custom-control-label" for="special_characters">Special Characters</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="lowercase" checked>
+                <label class="custom-control-label" for="lowercase">Lowercase Letters</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="uppercase" checked>
+                <label class="custom-control-label" for="uppercase">Uppercase Letters</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="numeric" checked>
+                <label class="custom-control-label" for="numeric">Numbers form 0 to 9</label>
         </div>
     </div>
 </div>

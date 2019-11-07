@@ -68,6 +68,12 @@ when generate password button is clicked
 //If the boxes are checked generate a random number and use it to pull a character from the desired array.
 
 function generate_password() {
+
+    if (lowercaseChecked === false && uppercaseChecked === false && symbolsChecked === false && numericChecked === false  ) {
+        alert ("Please select AT LEAST ONE criteria for password generation");
+        break;
+    }
+
     if (lowercaseChecked === true ) {
         for (i=0; i < lowercaseLength; i++) {
         var num = Math.floor(Math.random()*lowercase.length);
@@ -106,15 +112,14 @@ function generate_password() {
    
     console.log(password);
 
-    //code to break password string down into its elements and shuffle them around randomnly
-    //function shuffle(x) {
-    //splits assword into an array of substrings and assigns the array to a
+    //Below code breaks password string down into its elements and shuffles them around randomnly
+    //splits password into an array of substrings and assigns the array to a
     var a = password.split("");
     //assigns the length of array a to variable n
     var n = a.length;
     //For loop is defined to run for every element of array a.  i = n-1 becauses first element of array is 0.
         for(var i = n - 1; i > 0; i--) {
-            //Variable j is assigned to a random number that is the between 1 and n.
+            //Variable j is assigned to a random number that is between 1 and n.
             var j = Math.floor(Math.random() * (i + 1));
             //The element of current position in array is assigned to a temp variable
             var tmp = a[i];
@@ -131,6 +136,12 @@ function generate_password() {
     //grab content of password generator and place password into it.
     document.getElementById("password_spot").innerHTML = "password";
     }
+    
+
+
+
+
+
     
     //try adding results to a string
     

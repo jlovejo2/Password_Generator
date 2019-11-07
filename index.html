@@ -15,77 +15,93 @@
 </head>
 <body>
 <!--Start Header-->
-      <nav class="navbar navbar-light bg-light">
+      <nav class="navbar sticky-top navbar-light bg-light">
         <span class="navbar-brand mb-0 h1">Password Generator</span>
       </nav>
 <!--End Header-->
-<!--Start Card For password research-->
-<div class="row">
-    <div class="col-lg-3 col-md-12 col-sm-12">
+<!--Start div for content between Header and Footer-->
+<div class="content container-fluid d-flex align-items-center min-vh-100">
+<!--Start Card For password research-->   
+    <div class="col-lg-3 col-md-12 col-sm-12 p-4">
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+            <img class="card-img-top" src="assets/images/password_card_image.jpg" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">How long should I make my password?</h5>
                 <p class="card-text">There's all sorts of opinions out there below links are some good resources to help make up your mind.</p>
-                <a href="#" class="btn btn-primary"></a>
+                <a href="https://resources.infosecinstitute.com/password-security-complexity-vs-length/#gref" class="btn btn-primary btn-sm">Medium Length Read: Password Security: Complexity vs. Length [Updated 2019]</a>
+                <a href="https://www.researchgate.net/publication/318154948_On_Password_Strength_A_Survey_and_Analysis" class="btn btn-primary btn-sm">Heavy Reading: On Password Strength: A Survey and Analysis</a>
             </div>
         </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="content row">
-            <h2>Generate a Password</h2>
+<!--End Card-->
+<!--Start Content where password is generated-->
+    <div class="col-lg-6 col-md-6 col-sm-12 align-self-start text-light p-4">
+        <div class="row bg-info p-1">
+            <h2 class="text-center">Generate a Password</h2>
         </div>
-        <div class="row">
-            <p>Password enter area</p>
+        <div class="row bg-light text-dark p-2" style="height:200px;">
+            <p id="password_spot">Password enter area</p>
         </div>
-        <div class="row">
-            <div class="col-lg-6 col-sm-12">    
-                <button type="button" class="btn btn-primary btn-sm">Small button</button>
+        <div class="row d-flex justify-content-between">
+            <div class="col-lg-6 col-sm-12 text-center">    
+                <button type="button" class="btn btn-primary btn-sm" value="Input button" onclick()="generate_password()">Generate Password</button>
             </div>
-            <div class="col-lg-6 col-sm-12">
-                <button type="button" class="btn btn-secondary btn-sm">Small button</button>
+            <div class="col-lg-6 col-sm-12 text-center">
+                <button type="button" class="btn btn-secondary btn-sm">Copy Password</button>
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-        <h2>Checkbox for desired password criteria</h2>
-        <!--Adding checkboxes for password criteria-->
-        <form class="form-inline">
-                <div class="form-group">
-                  <label for="passwordLength">Length</label>
-                  <input type="password" id="passwordLength" class="form-control mx-sm-3" aria-describedby="passwordHelpInline">
-                  <small id="passwordHelpInline" class="text-muted">
-                    Length must be between 8-128 characters.
-                  </small>
-                </div>
-        </form>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="special_characters" checked >
-            <label class="custom-control-label" for="special_characters">Special Characters</label>
+<!--End content where password is generated-->
+<!--Start content where password criteria is selected-->
+    <div class="col-lg-3 col-md-offset-3 col-sm-12 align-self-start text-light mt-4 p-4">
+        <div class="row">
+            <h2 class="bg-info text-light text-center p-1">Checkbox for desired password criteria</h2>
+            <!--<form class="form-inline">
+                    <div class="form-group">
+                    <label for="passwordLength">Length</label>
+                    <input type="password" id="passwordLength" class="form-control mx-sm-3" aria-describedby="passwordHelpInline">
+                    <small id="passwordHelpInline" class="text-muted">
+                        Length must be between 8-128 characters.
+                    </small>
+                    </div>
+            </form> -->
         </div>
-        <div class="custom-control custom-checkbox">
+        <div class="row bg-secondary p-1">
+            <div>
+                <input id="password_length" type="text" name="password Length">Length must be between 8 and 128 characters</input>
+            </div>
+        </div>
+        <div class="row justify-content-between bg-secondary p-1">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="special_characters" checked >
+                <label class="custom-control-label" for="special_characters">Special Characters </label>
+            </div>
+            <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="lowercase" checked>
                 <label class="custom-control-label" for="lowercase">Lowercase Letters</label>
+            </div>
         </div>
-        <div class="custom-control custom-checkbox">
+        <div class="row justify-content-between bg-secondary p-1">
+            <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="uppercase" checked>
                 <label class="custom-control-label" for="uppercase">Uppercase Letters</label>
-        </div>
-        <div class="custom-control custom-checkbox">
+            </div>
+            <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="numeric" checked>
                 <label class="custom-control-label" for="numeric">Numbers form 0 to 9</label>
+            </div>
         </div>
     </div>
+<!--End content where password criteria is specified-->
 </div>
-<!--End Card-->
+<!--End Div containing all space between header and footer-->
 
 <!--Start Footer-->
-<div class="fixed-bottom min-10 footer">
+<div class="fixed-bottom min-10 footer bg-dark text-light" style="border-top:3px solid teal;">
         <p>Copright&copy;</p>
 </div>
 <!--Finish Footer-->
 <!--Link to External Javascript file for password generation-->
-    <script src="javascript/javascript.js">
-    </script>
+    <script src="javascript/javascript.js"></script>
 </body>
 </html>

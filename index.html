@@ -28,8 +28,8 @@
             <div class="card-body">
                 <h5 class="card-title">How long should I make my password?</h5>
                 <p class="card-text">There's all sorts of opinions out there below links are some good resources to help make up your mind.</p>
-                <a href="https://resources.infosecinstitute.com/password-security-complexity-vs-length/#gref" class="btn btn-primary btn-sm">Medium Length Read: Password Security: Complexity vs. Length [Updated 2019]</a>
-                <a href="https://www.researchgate.net/publication/318154948_On_Password_Strength_A_Survey_and_Analysis" class="btn btn-primary btn-sm">Heavy Reading: On Password Strength: A Survey and Analysis</a>
+                <a href="https://resources.infosecinstitute.com/password-security-complexity-vs-length/#gref" class="btn btn-primary btn-sm m-3">Medium Length Read: Password Security: Complexity vs. Length [Updated 2019]</a>
+                <a href="https://www.researchgate.net/publication/318154948_On_Password_Strength_A_Survey_and_Analysis" class="btn btn-primary btn-sm m-3">Heavy Reading: On Password Strength: A Survey and Analysis</a>
             </div>
         </div>
     </div>
@@ -40,11 +40,11 @@
             <h2 class="text-center">Generate a Password</h2>
         </div>
         <div class="row bg-light text-dark p-2" style="height:200px;">
-            <p id="password_spot">Password enter area</p>
+            <p id="password_spot">Password generation area</p>
         </div>
         <div class="row d-flex justify-content-between">
             <div class="col-lg-6 col-sm-12 text-center">    
-                <button type="button" class="btn btn-primary btn-sm" value="Input button" onclick()="generate_password()">Generate Password</button>
+                <button type="button" class="btn btn-primary btn-sm" value="Input button" onclick="generate_password()">Generate Password</button>
             </div>
             <div class="col-lg-6 col-sm-12 text-center">
                 <button type="button" class="btn btn-secondary btn-sm">Copy Password</button>
@@ -68,7 +68,8 @@
         </div>
         <div class="row bg-secondary p-1">
             <div>
-                <input id="password_length" type="text" name="password Length">Length must be between 8 and 128 characters</input>
+                <input id="password_length" type="number" name="password Length"></input>
+                <p>Length must be between 8 and 128 characters </p>
             </div>
         </div>
         <div class="row justify-content-between bg-secondary p-1">

@@ -28,15 +28,24 @@ when generate password button is clicked
 // numeric characters
 
 
-/*if (length > 128 && length < 8) {
-    alert("You have chosen a length outside of criteria");
-    break
-}*/
 
+
+// function test() {
+// var passwordLength = document.getElementById("password_length").value;
+//             console.log(passwordLength);
+//         }
+
+// // function test() {
+// //     console.log(document.getElementById("password_length").value);
+// // }
+
+
+
+function generate_password() {
 
 //function passwordGeneration() {
 //grab desired password length from element
-    var passwordLength = 10; //document.getElementbyId("password_length");
+    var passwordLength = document.getElementById("password_length").value; //prompt("Please enter length between 8 and 128");
     var password = "";
     //document.getElementById("password_length");
 //Arrays containing all possible characters
@@ -50,9 +59,23 @@ when generate password button is clicked
     var uppercaseChecked = document.getElementById("uppercase").checked;
     var numericChecked = document.getElementById("numeric").checked;
 
+    if (passwordLength === null) {
+        throw alert("See ya later");
+    }
+
+    if (passwordLength > 128 || passwordLength < 8) {
+    throw alert("Your length must be between 8 & 128 characters");
+    }
+
+    if (lowercaseChecked === false && uppercaseChecked === false && symbolsChecked === false && numericChecked === false  ) {
+        alert ("Please select AT LEAST ONE criteria for password generation");
+    }
+
+
 //Assign a portion of password length to each symbol
     //use Math.random to generate a random number between 0 and 1(essentially a percentage) and multiply it by the passwordLength (between 8 to 128) provided by User.  
     //The goal is to assign a random percentage of the passwordLength to the symbolsLength. Math.Round is used to round that number to nearest integer.
+    //make 3 a variable that changes based on trues
     var lowercaseLength = 1 + Math.round((passwordLength-3)*Math.random());
     //Using Math.random assign a random percentage of remainder of password length to lowercaseLength
     var uppercaseLength = 1 + Math.round(((passwordLength-3)-lowercaseLength)*Math.random());
@@ -61,18 +84,16 @@ when generate password button is clicked
     //Assign remaining portion of passwordLength to numericLength
     var numericLength = passwordLength-symbolsLength-lowercaseLength-uppercaseLength;
 
+
     console.log(symbolsLength)
     console.log(lowercaseLength)
     console.log(uppercaseLength)
     console.log(numericLength);
+
+   
 //If the boxes are checked generate a random number and use it to pull a character from the desired array.
 
-function generate_password() {
-
-    if (lowercaseChecked === false && uppercaseChecked === false && symbolsChecked === false && numericChecked === false  ) {
-        alert ("Please select AT LEAST ONE criteria for password generation");
-        break;
-    }
+//create function for repeat code here.
 
     if (lowercaseChecked === true ) {
         for (i=0; i < lowercaseLength; i++) {
@@ -80,15 +101,17 @@ function generate_password() {
         password = password.concat(lowercase[num]);
         }    
     }   else {
+            lowercaseLength = 0;
             password = password;
         }
 
     if (uppercaseChecked === true ) {
         for (i=0; i < uppercaseLength; i++) {
-        var num = Math.floor(Math.random()*lowercase.length);
+        var num = Math.floor(Math.random()*uppercase.length);
         password = password.concat(uppercase[num]);
         }
     }   else {
+            uppercaseLength = 0;
             password = password;
         }
 
@@ -98,18 +121,34 @@ function generate_password() {
             password = password.concat(symbols[num]);
         }    
     }   else {
+            symbolsLength = 0;
             password = password;
         }
 
     if (numericChecked === true ){
         for (i=0; i < numericLength; i++) {
-        var num = Math.floor(Math.random()*10);
+        var num = Math.floor(Math.random()*numeric.length);
         password = password.concat(numeric[num]);
         }
     }   else {
+            numericLength = 0;
             password = password;
         }
-   
+
+    console.log(symbolsLength)
+    console.log(lowercaseLength)
+    console.log(uppercaseLength)
+    console.log(numericLength);
+
+    if (numericLength + symbolsLength + uppercaseLength + lowercaseLength < passwordLength) {
+        var x = passwordLength -(numericLength + symbolsLength + uppercaseLength + lowercaseLength)
+
+    }
+
+    console.log(symbolsLength)
+    console.log(lowercaseLength)
+    console.log(uppercaseLength)
+    console.log(numericLength);
     console.log(password);
 
     //Below code breaks password string down into its elements and shuffles them around randomnly
@@ -134,8 +173,11 @@ function generate_password() {
     console.log(password);
 
     //grab content of password generator and place password into it.
-    document.getElementById("password_spot").innerHTML = "password";
+    document.getElementById("password_spot").innerHTML = password;
+    
     }
+
+    // document.getElementById("password_spot").addEventListener("click", generate_password);
     
 
 

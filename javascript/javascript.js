@@ -16,6 +16,7 @@ when generate password button is clicked
 
 //high security
 //crypto.getRandomValues()
+//window.crypto.getRandomValues()
 
 //low security
 //Math.random()
@@ -42,14 +43,12 @@ when generate password button is clicked
 
 
 function generate_password() {
-
-//function passwordGeneration() {
 //grab desired password length from element
     var passwordLength = document.getElementById("password_length").value; //prompt("Please enter length between 8 and 128");
     var password = "";
     //document.getElementById("password_length");
 //Arrays containing all possible characters
-    var symbols = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+    var symbols = "!#$%&'()*+,-./:<=>?@[]^_`{|}~";
     var lowercase = "abcdefghijklmnopqrstuvwxyz";
     var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     var numeric = "0123456789";
@@ -58,6 +57,8 @@ function generate_password() {
     var lowercaseChecked = document.getElementById("lowercase").checked;
     var uppercaseChecked = document.getElementById("uppercase").checked;
     var numericChecked = document.getElementById("numeric").checked;
+
+
 
     if (passwordLength === null) {
         throw alert("See ya later");
@@ -71,19 +72,68 @@ function generate_password() {
         alert ("Please select AT LEAST ONE criteria for password generation");
     }
 
+//create a variable used in random generation of portion of passwordlength that is assigned to checked password criteria.
+//Variable is equal to one less than the number of criteria that is checked.
+    var y = -1;
+    if(lowercaseChecked){
+        y++;
+    } else {
+        lowercaseLength = 0;
+    }
+    if(uppercaseChecked){
+        y++;
+    } else {
+        uppercaseLength = 0;
+    }
+    if(symbolsChecked) {
+        y++;
+    } else {
+        symbolsLength = 0;
+    }
+    if(numericChecked) {
+        y++;
+    } else {
+        numericLength = 0;
+    }
+
+    console.log(y);
 
 //Assign a portion of password length to each symbol
     //use Math.random to generate a random number between 0 and 1(essentially a percentage) and multiply it by the passwordLength (between 8 to 128) provided by User.  
     //The goal is to assign a random percentage of the passwordLength to the symbolsLength. Math.Round is used to round that number to nearest integer.
     //make 3 a variable that changes based on trues
-    var lowercaseLength = 1 + Math.round((passwordLength-3)*Math.random());
+    if (lowercaseChecked && lowercaseLength !== 0){
+        var lowercaseLength = 1 + Math.round((passwordLength-y)*Math.random());
+    }
     //Using Math.random assign a random percentage of remainder of password length to lowercaseLength
-    var uppercaseLength = 1 + Math.round(((passwordLength-3)-lowercaseLength)*Math.random());
+    if (uppercaseChecked && uppercaseLength !== 0) {
+    var uppercaseLength = 1 + Math.round(((passwordLength-y)-lowercaseLength)*Math.random());
+    }
     //Using Math.random assign a random percentage of remainder of password length to uppercaseLength
-    var symbolsLength = 1 + Math.round(((passwordLength-3)-lowercaseLength-uppercaseLength)*Math.random());
+    if (symbolsChecked && symbolsLength !== 0) {
+    var symbolsLength = 1 + Math.round(((passwordLength-y)-lowercaseLength-uppercaseLength)*Math.random());
+    }
     //Assign remaining portion of passwordLength to numericLength
+    if (numericChecked && numericLength !== 0) {
     var numericLength = passwordLength-symbolsLength-lowercaseLength-uppercaseLength;
+    }
 
+    //Below code is if statements that code for the conditions that specify when only lowercase criteria is checked
+    if (lowercaseChecked === true && uppercaseChecked === false && symbolsChecked === false && numericChecked === false){
+        lowercaseLength = passwordLength;
+    }
+    //Below code is if statements that code for the conditions that specify when only uppercase criteria is checked
+    if (lowercaseChecked === false && uppercaseChecked === true && symbolsChecked === false && numericChecked === false){
+        uppercaseLength = passwordLength;
+    }
+    //Below code is if statements that code for the conditions that specify when only symbols criteria is checked
+    if (lowercaseChecked === false && uppercaseChecked === false && symbolsChecked === true && numericChecked === false){
+        symbolsLength = passwordLength;
+    }
+    //Below code is if statements that code for the conditions that specify when only numeric criteria is checked
+    if (lowercaseChecked === false && uppercaseChecked === true && symbolsChecked === false && numericChecked === true){
+        numericLength = passwordLength;
+    }
 
     console.log(symbolsLength)
     console.log(lowercaseLength)
@@ -95,13 +145,13 @@ function generate_password() {
 
 //create function for repeat code here.
 
+
     if (lowercaseChecked === true ) {
         for (i=0; i < lowercaseLength; i++) {
         var num = Math.floor(Math.random()*lowercase.length);
         password = password.concat(lowercase[num]);
         }    
     }   else {
-            lowercaseLength = 0;
             password = password;
         }
 
@@ -111,7 +161,6 @@ function generate_password() {
         password = password.concat(uppercase[num]);
         }
     }   else {
-            uppercaseLength = 0;
             password = password;
         }
 
@@ -121,7 +170,6 @@ function generate_password() {
             password = password.concat(symbols[num]);
         }    
     }   else {
-            symbolsLength = 0;
             password = password;
         }
 
@@ -131,7 +179,6 @@ function generate_password() {
         password = password.concat(numeric[num]);
         }
     }   else {
-            numericLength = 0;
             password = password;
         }
 
@@ -140,10 +187,10 @@ function generate_password() {
     console.log(uppercaseLength)
     console.log(numericLength);
 
-    if (numericLength + symbolsLength + uppercaseLength + lowercaseLength < passwordLength) {
-        var x = passwordLength -(numericLength + symbolsLength + uppercaseLength + lowercaseLength)
+    // if (numericLength + symbolsLength + uppercaseLength + lowercaseLength < passwordLength) {
+    //     var x = passwordLength -(numericLength + symbolsLength + uppercaseLength + lowercaseLength)
 
-    }
+    // }
 
     console.log(symbolsLength)
     console.log(lowercaseLength)
@@ -152,7 +199,7 @@ function generate_password() {
     console.log(password);
 
     //Below code breaks password string down into its elements and shuffles them around randomnly
-    //splits password into an array of substrings and assigns the array to a
+    //splits password into an array of substrings and assigns the array to "a"
     var a = password.split("");
     //assigns the length of array a to variable n
     var n = a.length;
@@ -162,7 +209,7 @@ function generate_password() {
             var j = Math.floor(Math.random() * (i + 1));
             //The element of current position in array is assigned to a temp variable
             var tmp = a[i];
-            //Since the current content was assigned to temp variable in above line I set current array position equal to a random array position.
+            //Since the current content was assigned to temp variable in above line set current array position equal to a random array position.
             a[i] = a[j];
             //Now I set the temp variable (the old content of current position) equal to the random position that just got assigned to current position.
             a[j] = tmp;

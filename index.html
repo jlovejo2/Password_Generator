@@ -20,10 +20,12 @@
       </nav>
 <!--End Header-->
 <!--Start div for content between Header and Footer-->
-<div class="content container-fluid d-flex align-items-center min-vh-100">
+<div class="content container-fluid" style="border: 3px solid white;" >
+    <div class="row"></div>
+    <div class="row">
 <!--Start Card For password research-->   
-    <div class="col-lg-3 col-md-12 col-sm-12 p-4">
-        <div class="card" style="width: 18rem;">
+    <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-xs-12 p-4">
+        <div class="card">
             <img class="card-img-top" src="assets/images/password_card_image.jpg" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">How long should I make my password?</h5>
@@ -35,36 +37,27 @@
     </div>
 <!--End Card-->
 <!--Start Content where password is generated-->
-    <div class="col-lg-6 col-md-6 col-sm-12 align-self-start text-light p-4">
+    <div class="col-xl-7 col-lg-6 col-md-6 col-sm-6 col-xs-12 text-light p-4">
         <div class="row bg-info p-1">
             <h2 class="text-center">Generate a Password</h2>
         </div>
         <div class="row bg-light text-dark p-2" style="height:200px;">
-            <p id="password_spot">Password generation area</p>
+            <p type="text" id="password_spot">Password generation area</p>
         </div>
-        <div class="row d-flex justify-content-between">
-            <div class="col-lg-6 col-sm-12 text-center">    
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-6 text-center">    
                 <button type="button" class="btn btn-primary btn-sm" value="Input button" onclick="generate_password()">Generate Password</button>
             </div>
-            <div class="col-lg-6 col-sm-12 text-center">
-                <button type="button" class="btn btn-secondary btn-sm">Copy Password</button>
+            <div class="col-lg-6 col-sm-6 col-xs-6 text-center">
+                <button type="button" class="btn btn-secondary btn-sm" value="Input button" onclick="copyToClipboard()">Copy Password</button>
             </div>
         </div>
     </div>
 <!--End content where password is generated-->
 <!--Start content where password criteria is selected-->
-    <div class="col-lg-3 col-md-offset-3 col-sm-12 align-self-start text-light mt-4 p-4">
+    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 align-self-top text-light p-4">
         <div class="row">
             <h2 class="bg-info text-light text-center p-1">Checkbox for desired password criteria</h2>
-            <!--<form class="form-inline">
-                    <div class="form-group">
-                    <label for="passwordLength">Length</label>
-                    <input type="password" id="passwordLength" class="form-control mx-sm-3" aria-describedby="passwordHelpInline">
-                    <small id="passwordHelpInline" class="text-muted">
-                        Length must be between 8-128 characters.
-                    </small>
-                    </div>
-            </form> -->
         </div>
         <div class="row bg-secondary p-1">
             <div>
@@ -94,11 +87,11 @@
         </div>
     </div>
 <!--End content where password criteria is specified-->
+    <div id="password_criteria" class="row"></div>
 </div>
 <!--End Div containing all space between header and footer-->
-
 <!--Start Footer-->
-<div class="fixed-bottom min-10 footer bg-dark text-light" style="border-top:3px solid teal;">
+<div class="footer fixed-bottom bg-dark text-light" style="border-top:3px solid teal;">
         <p>Copright&copy;</p>
 </div>
 <!--Finish Footer-->

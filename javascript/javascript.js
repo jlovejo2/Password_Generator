@@ -38,14 +38,23 @@ var lowercaseChecked = document.getElementById("lowercase").checked;
 var uppercaseChecked = document.getElementById("uppercase").checked;
 var numericChecked = document.getElementById("numeric").checked;
 
-
+//Below Function will copy the password to the clipboard
 function copyToClipboard() {
-    var copyText = document.querySelector("password_spot");
-    copyText.select();
-    // copyText.setSelectionRange(0, 99999)
+    //grabbing the inner text from password_spot which is where the password is printed and setting it equal to variable as a string
+    var text = document.querySelector("#password_spot").innerText;
+    //creating an temporary element called text area in the document and setting it equal to a variable
+    var tempEl = document.createElement("textarea");
+    //calling the temp element jsut created to be appended
+    document.body.appendChild(tempEl);
+    //setting the value of temp element to the variable text
+    tempEl.value = text;
+    //use the select function to select the text within the  element
+    tempEl.select();
+    //execute a copy to clipboard on the selected text in the document
     document.execCommand("copy");
-    alert("Copied the text: " + copyText.value);
-  }
+    //remove the temporary element
+    document.body.removeChild(tempEl)
+}
 
 //Below function will take a random number "a" of characters out of string b and place them into password string.
 function randomPosition (a,b) {
@@ -121,13 +130,13 @@ function generate_password() {
     //Assign a portion of password length to each symbol
     //use Math.random to generate a random number between 0 and 1(essentially a percentage) and multiply it by the passwordLength (between 8 to 128) provided by User.  
     //The goal is to assign a random percentage of the passwordLength to the symbolsLength. Math.Round is used to round that number to nearest integer.
-    //make 3 a variable that changes based on trues
+    //lowercaselength !== 0 is in there to avoid length being assigned to it when it is not selected.
     if (lowercaseChecked && lowercaseLength !== 0){
-    var lowercaseLength = 1 + Math.round((passwordLength-y)*Math.random());
+    var lowercaseLength = Math.round((passwordLength-y)*Math.random());
     }
     //Using Math.random assign a random percentage of remainder of password length to lowercaseLength
     if (uppercaseChecked && uppercaseLength !== 0) {
-    var uppercaseLength = 1 + Math.round(((passwordLength-y)-lowercaseLength)*Math.random());
+    var uppercaseLength = Math.round(((passwordLength-y)-lowercaseLength)*Math.random());
     }
     //Using Math.random assign a random percentage of remainder of password length to uppercaseLength
     if (symbolsChecked && symbolsLength !== 0) {

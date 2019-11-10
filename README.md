@@ -6,7 +6,7 @@ https://jlovejo2.github.io/Password_Generator/
 
 ## Table of Contents
 * [Password Generator](#password-generator)
-* [Password Criteria](#Password Criteria)
+* [Password Criteria](#password-criteria)
 * [Contact](#contact)
 * [Coding Languages Used](#coding-languages-used)
 * [Technologies](#technologies)
@@ -52,7 +52,7 @@ This project has 4 total files of code:
 * I created a type box criteria for the webpage for password length.  There are no events attached to box.  The password function just pulls length from box when it is clicked on.
 * The layout is intentionally offcenter to frame the "password" in the background image.
 
-##Functions Used
+## Functions Used
 * created a copy to clipboard function.
 * created a randomPosition function which grabs random characters from the designated string and assigns to string.
 * created a randomizeString function which takes a string and rearranges the contents randomnly.

@@ -6,9 +6,10 @@ body html {
     background-image: url(../assets/images/password_digital.jpg);
     background-size: cover;
 }
+.footer p { 
+    position: relative; left: 50%; 
+}
 
-@media (max-width:450px) {
-    #password_criteria {
-    
-    }
+.footer {
+    height: 4%;
 }

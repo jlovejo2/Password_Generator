@@ -26,6 +26,7 @@ when generate password button is clicked
 // uppercase characters
 // numeric characters
 
+
 //Below Function will copy the password to the clipboard
 function copyToClipboard() {
     //grabbing the inner text from password_spot which is where the password is printed and setting it equal to variable as a string
@@ -43,11 +44,11 @@ function copyToClipboard() {
     //remove the temporary element
     document.body.removeChild(tempEl)
 }
-    
+
 function generate_password() {
 
     //Reset password as a blank string.
-    var password = " ";
+    var password = "";
     //Arrays containing all possible characters
     var symbols = "!#$%&'()*+,-./:=?@[]^_`{|}~";
     var lowercase = "abcdefghijklmnopqrstuvwxyz";
@@ -69,9 +70,9 @@ function generate_password() {
         if (lowercaseChecked === false && uppercaseChecked === false && symbolsChecked === false && numericChecked === false  ) {
             throw alert ("Please select AT LEAST ONE criteria for password generation");
         }
-        
-        var y = -1;
 
+        //Declare a variable that is used in the random assigning of percentage of password length below.
+        var y = -1;
         if (lowercaseChecked) {
             y++;
         }
@@ -85,7 +86,7 @@ function generate_password() {
             y++;
         }
 
-       //Below is a series of If statements to determine what criteria were selected and what formula to use to calculate random percentage of passwordlength. 
+        //Below is a series of If statements to determine what criteria were selected and what formula to use to calculate random percentage of passwordlength. 
         //use Math.random to generate a random number between 0 and 1(essentially a percentage) and multiply it by the passwordLength (between 8 to 128) provided by User.  
         //The goal is to assign a random percentage of the passwordLength.
         if (y == 1 && lowercaseChecked && uppercaseChecked ){
@@ -101,12 +102,12 @@ function generate_password() {
             var numericLength = passwordLength - lowercaseLength;
         }
         if (y == 1 && uppercaseChecked && symbolsChecked) {
-            var lowercaseLength = Math.round((passwordLength-y)*Math.random());
-            var numericLength = passwordLength - lowercaseLength;
+            var uppercaseLength = Math.round((passwordLength-y)*Math.random());
+            var symbolsLength = passwordLength - uppercaseLength;
         }
         if (y == 1 && uppercaseChecked && numericChecked) {
-            var lowercaseLength = Math.round((passwordLength-y)*Math.random());
-            var numericLength = passwordLength - lowercaseLength;
+            var uppercaseLength = Math.round((passwordLength-y)*Math.random());
+            var numericLength = passwordLength - uppercaseLength;
         }
         if (y == 1 && symbolsChecked && numericChecked) {
             var symbolsLength = Math.round((passwordLength-y)*Math.random());
@@ -115,12 +116,12 @@ function generate_password() {
         if (y == 2 && symbolsChecked && uppercaseChecked && numericChecked) {
             var symbolsLength = Math.round((passwordLength-y)*Math.random());
             var uppercaseLength = Math.round((passwordLength-symbolsLength)*Math.random());
-            var numericLength = passwordLength - symbolsLength - uppercaseLength
+            var numericLength = passwordLength - uppercaseLength - symbolsLength;
         }
         if (y == 2 && uppercaseChecked && numericChecked && lowercaseChecked) {
             var lowercaseLength = Math.round((passwordLength-y)*Math.random());
             var uppercaseLength = Math.round((passwordLength-lowercaseLength)*Math.random());
-            var numericLength = passwordLength - lowercaseLength - uppercaseLength
+            var numericLength = passwordLength - lowercaseLength - uppercaseLength;
         }
         if (y == 2 && numericChecked && lowercaseChecked && symbolsChecked) {
             var symbolsLength = Math.round((passwordLength-y)*Math.random());
@@ -138,11 +139,6 @@ function generate_password() {
             var numericLength = Math.round((passwordLength-symbolsLength-uppercaseLength)*Math.random());
             var lowercaseLength = passwordLength - symbolsLength - uppercaseLength - numericLength
         }
-
-        console.log(lowercaseLength);
-        console.log(uppercaseLength);
-        console.log(symbolsLength);
-        console.log(numericLength);
 
         //Below code is if statement that codes for the conditions that specify when only lowercase criteria is checked
         if (lowercaseChecked === true && uppercaseChecked === false && symbolsChecked === false && numericChecked === false){
@@ -165,66 +161,62 @@ function generate_password() {
         console.log(uppercaseLength);
         console.log(symbolsLength);
         console.log(numericLength);
-        
-        //Below function is supposed to take a random number "a" of characters out of string b and place them into password string.  I can't get it to work.
-        function randomPos(a,b,c) {
-        //For loop that runs for as long as the random length of the User designated password length that was assigned to it.
-            for (var i=0; i < a; i++) {
-            //pick a random number between 0 and the length of lowercase string
-            var num = Math.floor(Math.random()*b.length);
-            var d = b[num];
-            //find the character in the position of lowercase string for the random number generated and add it to password 
-            c = c + d;
-            }
-        }
-        
+   
         //If the boxes are checked generate a random number and use it to pull a character from the desired array.
         //If statement checking for lowercase criteria being checked
         if (lowercaseChecked === true) {
-        //runs the randomPosition function which will pull a random number = to lowercaseLength of characters out of lowercase string
-            randomPos(lowercaseLength, lowercase, password);
+            //for loop that runs for the random length of password that lowercase was assigned earlier.
+            for (var i=0; i <= lowercaseLength; i++) {
+                //find a random number between 0 and one less than length of lowercase string
+                var num = Math.floor(Math.random()*lowercase.length);
+                //for that random number find the character in that location in lowercase string and add it to password
+                password = password.concat(lowercase[num]);
+            }
         }    
         if (uppercaseChecked === true) {
-            randomPos(uppercaseLength, uppercase, password);  
+            for (var i=0; i <= uppercaseLength; i++) {
+                var num = Math.floor(Math.random()*uppercase.length);
+                password = password.concat(uppercase[num]);
+            }  
         }  
         if (symbolsChecked === true) {
-            randomPos(symbolsLength, symbols, password);
+            for (var i=0; i <= symbolsLength; i++) {
+                var num = Math.floor(Math.random()*symbols.length);
+                password = password.concat(symbols[num]);
+            }
         }  
         if (numericChecked === true){
-            randomPos(numericLength, numeric, password);
+            for (var i=0; i <= numericLength; i++) {
+                var num = Math.floor(Math.random()*numeric.length);
+                password = password.concat(numeric[num]);
+            }
         } 
 
         console.log(password);
 
-        function randomizeString(x) {
-            //splits x into an array of substrings and assigns the array to "a"
-            var a = x.split("");
-            //assigns the length of array a to variable n
-            var n = a.length;
-            //For loop is defined to run for every element of array a.  i = n-1 becauses first element of array is 0.
-                for(var i = n - 1; i > 0; i--) {
-                    //Variable j is assigned to a random number that is between 1 and n.
-                    var j = Math.floor(Math.random() * (i + 1));
-                    //The element of current position in array is assigned to a temp variable
-                    var tmp = a[i];
-                    //Since the current content was assigned to temp variable in above line set current array position equal to a random array position.
-                    a[i] = a[j];
-                    //Now I set the temp variable (the old content of current position) equal to the random position that just got assigned to current position.
-                    a[j] = tmp;
-                }
-                //I take the array a and join it back into a string and set that equal to x
-                x = a.join("");
+    //Below code breaks a string down into its elements and shuffles them around randomnly
+    //splits password into an array of substrings and assigns the array to "a"
+    var a = password.split("");
+    //assigns the length of array a to variable n
+    var n = a.length;
+    //For loop is defined to run for every element of array a.  i = n-1 becauses first element of array is 0.
+        for(var i = n - 1; i > 0; i--) {
+            //Variable j is assigned to a random number that is between 1 and n.
+            var j = Math.floor(Math.random() * (i + 1));
+            //The element of current position in array is assigned to a temp variable
+            var tmp = a[i];
+            //Since the current content was assigned to temp variable in above line set current array position equal to a random array position.
+            a[i] = a[j];
+            //Now I set the temp variable (the old content of current position) equal to the random position that just got assigned to current position.
+            a[j] = tmp;
         }
+    //I take the array a and join it back into a string and set that equal to password
+    password = a.join("");
 
-        randomizeString(password);
+    console.log(password);
 
-        console.log(password);
-
-        //grab content of password generator and place password into it.
-        document.getElementById("password_spot").innerText = password;
-
-
-
+    //grab content of password generator and place password into it.
+    document.getElementById("password_spot").innerText = password;
 
 }
 

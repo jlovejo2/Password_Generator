@@ -43,6 +43,8 @@ This project has 4 total files of code:
 * index.html - html code for about-me page.
 * style.css - css code for styling of page customized from bootstrap.
 * javascript.js - all javascript code for the page. Contains four functions.
+* javascript1.js - all javascript code for the page without randomizeSTring function & randomPosition function.
+  Created this because I was having trouble getting these functions to work and wanted to have code showing that my methodology was sound.
 * assets folder - contains all my images used.
 
 ## Specific Changes Made
@@ -54,13 +56,17 @@ This project has 4 total files of code:
 
 ## Functions Used
 * created a copy to clipboard function.
-* created a randomPosition function which grabs random characters from the designated string and assigns to string.
+* Note: could not get this to work in my script so I have script without functions linked to HTML. Created a randomPosition function which grabs random characters from the designated 
+   string and assigns to string.
 * created a randomizeString function which takes a string and rearranges the contents randomnly.
 * created a generate password function.  The main concept of my generate password function.  Is that the user designates the password length and what type of characters they want in it. 
    Then based on that I assign a random percent of the password length to each criteria that the user selected.  Then I pull random characters from each chosen character string for the 
    amount of the random password length % assigned.  These characters get assigned to the password string.  Then I rearrange the password in a random order. 
 
 ## Known Issues With Code
+* There is an issue that occurs occosionally with Math.Round where one of the criteria will be assigned 0 as a length.  I believe it is because Math.Random() assigns it a small percentage and 
+  then Math.Round() puts it at 0.  I could not figure out how to solve this.  It does not happen often just means that if you select four criteria. Occasionally only 3 of the criteria will be 
+  present in password.
 * I am aware that I used a lot of if statements and would love to hear feedback on if there are more efficient ways to avoid or group these together.
 * I am aware that at minimum width my footer overlaps my password criteria a tiny bit.  I could not figure out what was going wrong in the bootstrap to make such a small overlap
 

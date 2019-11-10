@@ -13,7 +13,7 @@ https://jlovejo2.github.io/Password_Generator/
 * [Helpful hints](#helpful-hints)
 * [Specific Changes Made](#specific-changes-made)
 * [Functions Used](#functions-used)
-* [Known Issues With Code](#known-issues-with-code
+* [Known Issues With Code](#known-issues-with-code)
 
 ## Password Generator
 * This web application consists of one page that generates a randomized password for the user.
